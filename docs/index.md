@@ -2,122 +2,70 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-[Link to another page](another-page).
+# Généralités
 
-There should be whitespace between paragraphs.
+## Introduction
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+Ce site web porte sur le projet d'informatique de deux étudiants de l'ITII PACA.
 
-# [](#header-1)Header 1
+Le sujet proposé est la production d'un "jeu du labyrinthe".
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## [](#header-2)Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### [](#header-3)Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### [](#header-4)Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### [](#header-5)Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### [](#header-6)Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![](https://guides.github.com/activities/hello-world/branching.png)
+Le projet a pour objectif de produire une application (un exécutable testé et
+opérationnel) en situation de projet.
 
 
-### Definition lists can be used with HTML syntax.
+## Présentation du projet
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
+Le sujet est présenté dans le document d'entrée [DIN001](/ref/DIN001.pdf).
 
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
+Il s'agit de réaliser un jeu de labyrinthe en 2 dimensions.
 
-```
-The final element.
-```
+[D'après Wikipedia :](https://fr.wikipedia.org/wiki/Jeu_de_labyrinthe)<br>
+> Le jeu de labyrinthe (en anglais, maze game) est un type de jeu vidéo dont le
+> gameplay repose sur le motif du labyrinthe. L'objectif de jeu requiert de
+> naviguer avec succès dans un labyrinthe, c'est-à-dire dans un décor sinueux,
+> fait d'embranchements, d'impasses et de fausses pistes, destiné à perdre ou à
+> ralentir le personnage. Il existe diverses variantes de ce type de jeux : la
+> plus célèbre est sans doute celle incarnée par Pac-Man.
+
+Ce travail est à réaliser par une équipe de 2 personnes en mode projet.
+Le code à produire doit être du C ANSI.
+La présentation de l'application se fait sous environnement Linux.
+
+
+Le projet est hébergé sur [Github](www.github.com).
+Le site utilise [le thème "hacker"]( https://github.com/pages-themes/hacker).
+
+## Objet de ce document
+
+Ce document est la page d'accueil du "site web projet" et a pour unique vocation
+d'être un point d'entrée vers une documentation simplifiée et le code du projet.
+
+
+## Structure de ce document
+
+Cette page présente la structure suivante :
+- [Section 1 : Généralités](#généralités) : Introduction au projet et à ce
+  document.
+- [Section 2 : Documents](#documents) : Liste des documents du projet.
+
+
+
+________________________________________________________________________________
+________________________________________________________________________________
+
+# Documents
+
+Cette section liste les différents documents du projet.
+
+## Documents d'entrée
+
+| ID | Désignation |
+| -- | ----------- |
+| DIN001 | [Enonce Projet 2017 - v1.pdf](110_input-doc/Enonce_Projet_2017_-_v1.pdf) |
+
+
+
+________________________________________________________________________________
+________________________________________________________________________________
