@@ -16,6 +16,15 @@ dist: trusty
 
 
 
+addons:
+  sonarcloud:
+    organization: "unice-etu-gom-github"
+  branches:
+    - master
+    - dev-issue-0003-mise_en_place_SonarCloud
+
+
+
 #before_install:
 
 
@@ -32,6 +41,7 @@ install:
 script:
     - make distclean
     - make
+    - sonar-scanner
 
 
 
