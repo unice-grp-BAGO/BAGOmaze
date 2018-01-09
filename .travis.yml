@@ -1,0 +1,50 @@
+# ##############################################################################
+##  @file   .travis.yml
+##  @brief  Configuration file for the Travis CI system.
+##
+##  @par References
+##  - [https://docs.travis-ci.com/user/customizing-the-build]
+##  - [https://docs.travis-ci.com/user/languages/c/]
+# ##############################################################################
+
+language: c
+
+sudo: enabled
+
+os: linux
+dist: trusty
+
+
+
+#before_install:
+
+
+
+install:
+    - sudo make install-dependencies
+
+
+
+#before_script:
+
+
+
+script:
+    - make distclean
+    - make
+
+
+
+#after_success:
+#after_failure:
+
+
+
+#before_deploy:
+#deploy:
+#after_deploy:
+
+
+
+#after_script:
+
