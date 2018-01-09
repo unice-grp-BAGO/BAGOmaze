@@ -152,7 +152,7 @@ $(BUILD_SUBDIRS) $(DIR_OUTPUT):
 $(DIR_OUTPUT)/$(APP_NAME): $(OBJ)
 	@$(ECHO) 	"$(TERM_COL_INV)    $(TERM_FMT_BOLD)LD  $@$(TERM_FMT_STD)"
 	@$(LD) $^ -o $@
-	@$(ECHO)	"$(TERM_COL_GRN)    $(TERM_FMT_BOLD)--> $< generated successfully !$(TERM_FMT_STD)"
+	@$(ECHO)	"$(TERM_COL_GRN)    $(TERM_FMT_BOLD)--> $@ generated successfully !$(TERM_FMT_STD)"
 
 
 
