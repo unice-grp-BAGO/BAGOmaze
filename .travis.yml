@@ -17,15 +17,11 @@ dist: trusty
 
 
 addons:
-  sonarqube:
+  sonarcloud:
     branches:
       - master
       - dev-issue-0003-mise_en_place_SonarCloud
-  sonarcloud:
     organization: "unice-etu-gom-github"
-#   branches:
-#     - master
-#     - dev-issue-0003-mise_en_place_SonarCloud
 
 cache:
     directories:
