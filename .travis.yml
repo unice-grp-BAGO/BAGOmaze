@@ -27,6 +27,10 @@ addons:
 #     - master
 #     - dev-issue-0003-mise_en_place_SonarCloud
 
+cache:
+    directories:
+        - '$HOME/.sonar/cache'
+
 
 
 #before_install:
@@ -44,7 +48,10 @@ install:
 
 script:
     - make distclean
-    - make
+    # Wraps the compilation with the Build Wrapper to generate configuration (used
+    # later by the SonarQube Scanner) into the "bw-output" folder
+    - build-wrapper-linux-x86-64 --out-dir bw-output make
+    #- make
     - sonar-scanner
 
 
