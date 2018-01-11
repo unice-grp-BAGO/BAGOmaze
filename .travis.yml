@@ -16,6 +16,21 @@ dist: trusty
 
 
 
+addons:
+  sonarcloud:
+    branches:
+      - master
+      - dev-issue-0003-mise_en_place_SonarCloud
+    organization: "unice-etu-gom-github"
+    token:
+      secure: "LWrZahOekRIvPw6XxoNNeojDmMS51IOLNCS0oU6wEiXW20JXuElrRTMSvKnxwr0O30Dp4XwY3hE110L0rF5GqMnqEinoia1BsxCWmm3TvZ1HCfZMUWiQq0UZrNFo8V+0elzz6KPn5JJAAl8SvTyFuOj3wAD78g+xC3KTHs+to7dRTExFc0U6yccWuKnBzCkx5L9bMVs25ndsgaA/FG0DC+8Jd0oVb5D3FG8iDCGAcrQITa+RMKbh+Jlx6oCKD9HfGU97FM1jn9uipaleQFOzrZeOPZHyCKlG2T8rWbA+TUTfsMcKLNENDWalhhZx40elICWLtG1g14RWp5XUbfKxz+fG4lCv/hjj4F1PWmEmX7uSQZBBGlprc6PSjx4lE/S+lKUl4Nkx5O0aaX/SeHohyyEQ0kpVqnmvJGkNzCkBNfgw6WQvfZBsv3sIas2ExjAP5M3TAs6X8q9sm1UqfLux3go3UvKL5sK7AHnON6x5Gee+XJYtQIAliQDPHSM4y0tp7eEUj0y/5PSZtiAnphbM2AAaXGHRPHfw39U7ETt7Fqqf9Vb/w13Yey/AvlhnOG2aYaAmWatm8p/s1JlL0aA0cQSl1uTGYe3dRTA6DFuEh5ddmuDmjHVTYbSE4Ic37yuXEv9VN/qWm8tW8Kote6F6cORpOjjy3fNUjKVdm2L3riU="
+
+cache:
+    directories:
+        - '$HOME/.sonar/cache'
+
+
+
 #before_install:
 
 
@@ -31,7 +46,11 @@ install:
 
 script:
     - make distclean
-    - make
+    # Wraps the compilation with the Build Wrapper to generate configuration (used
+    # later by the SonarQube Scanner) into the "bw-output" folder
+    - build-wrapper-linux-x86-64 --out-dir bw-output make
+    #- make
+    - sonar-scanner -X
 
 
 
