@@ -1,92 +1,56 @@
-# The Hacker theme
+# The BAGO Maze Game
 
-[![Build Status](https://travis-ci.org/pages-themes/hacker.svg?branch=master)](https://travis-ci.org/pages-themes/hacker) [![Gem Version](https://badge.fury.io/rb/jekyll-theme-hacker.svg)](https://badge.fury.io/rb/jekyll-theme-hacker)
-
-*Hacker is a Jekyll theme for GitHub Pages. You can [preview the theme to see what it looks like](http://pages-themes.github.io/hacker), or even [use it today](#usage).*
-
-![Thumbnail of hacker](thumbnail.png)
-
-## Usage
-
-To use the Hacker theme:
-
-1. Add the following to your site's `_config.yml`:
-
-    ```yml
-    theme: jekyll-theme-hacker
-    ```
-
-2. Optionally, if you'd like to preview your site on your computer, add the following to your site's `Gemfile`:
-
-    ```ruby
-    gem "github-pages", group: :jekyll_plugins
-    ```
+Site officiel [à cette adresse](https://unice-grp-bago.github.io/BAGOmaze/).
 
 
+## Integration continue :
 
-## Customizing
+### Travis CI
 
-### Configuration variables
+| |  **master** |
+|--- | --- |
+|Build Status :|[![Build Status](https://travis-ci.org/unice-grp-BAGO/BAGOmaze.svg?branch=master)](https://travis-ci.org/unice-grp-BAGO/BAGOmaze)|
 
-Hacker will respect the following variables, if set in your site's `_config.yml`:
+### Sonar Cloud
 
-```yml
-title: [The title of your site]
-description: [A short description of your site's purpose]
-```
 
-Additionally, you may choose to set the following optional variables:
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=unice-grp-bago.BAGOmaze)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)
+[![CE activity](https://sonarcloud.io/api/badges/ce_activity?key=unice-grp-bago.BAGOmaze)](https://sonarcloud.io/dashboard/index/key=unice-grp-bago.BAGOmaze)
 
-```yml
-show_downloads: ["true" or "false" to indicate whether to provide a download URL]
-google_analytics: [Your Google Analytics tracking ID]
-```
 
-### Stylesheet
+#### Métriques
 
-If you'd like to add your own custom styles:
-
-1. Create a file called `/assets/css/style.scss` in your site
-2. Add the following content to the top of the file, exactly as shown:
-    ```scss
-    ---
-    ---
-
-    @import "{{ site.theme }}";
-    ```
-3. Add any custom CSS (or Sass, including imports) you'd like immediately after the `@import` line
-
-### Layouts
-
-If you'd like to change the theme's HTML layout:
-
-1. [Copy the original template](https://github.com/pages-themes/hacker/blob/master/_layouts/default.html) from the theme's repository<br />(*Pro-tip: click "raw" to make copying easier*)
-2. Create a file called `/_layouts/default.html` in your site
-3. Paste the default layout content copied in the first step
-4. Customize the layout as you'd like
-
-## Roadmap
-
-See the [open issues](https://github.com/pages-themes/hacker/issues) for a list of proposed features (and known issues).
-
-## Project philosophy
-
-The Hacker theme is intended to make it quick and easy for GitHub Pages users to create their first (or 100th) website. The theme should meet the vast majority of users' needs out of the box, erring on the side of simplicity rather than flexibility, and provide users the opportunity to opt-in to additional complexity if they have specific needs or wish to further customize their experience (such as adding custom CSS or modifying the default layout). It should also look great, but that goes without saying.
-
-## Contributing
-
-Interested in contributing to Hacker? We'd love your help. Hacker is an open source project, built one contribution at a time by users like you. See [the CONTRIBUTING file](CONTRIBUTING.md) for instructions on how to contribute.
-
-### Previewing the theme locally
-
-If you'd like to preview the theme locally (for example, in the process of proposing a change):
-
-1. Clone down the theme's repository (`git clone https://github.com/pages-themes/hacker`)
-2. `cd` into the theme's directory
-3. Run `script/bootstrap` to install the necessary dependencies
-4. Run `bundle exec jekyll serve` to start the preview server
-5. Visit [`localhost:4000`](http://localhost:4000) in your browser to preview the theme
-
-### Running tests
-
-The theme contains a minimal test suite, to ensure a site with the theme would build successfully. To run the tests, simply run `script/cibuild`. You'll need to run `script/bootstrap` one before the test script will work.
+| | |
+|--- | --- |
+|# of lines (including comments and empty lines)|[![SC lines](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=lines)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of lines of code (excluding comments and empty lines)|[![SC ncloc](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=ncloc)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|Percentage of comments|[![SC comment_lines_density](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=comment_lines_density)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|Percentage of documented API|[![SC public_documented_api_density](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=public_documented_api_density)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|Complexity by function|[![SC function_complexity](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=function_complexity)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of tests that have stopped due to an error|[![SC test_errors](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=test_errors)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of tests whose assertions have failed|[![SC test_failures](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=test_failures)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of ignored tests|[![SC # of ignored tests](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=skipped_tests)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|%age of tests that have succeeded|[![SC %age of tests that have succeeded](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=test_success_density)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|UT coverage %age|[![SC UT coverage %age](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=coverage)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|UT coverage %age on new code|[![SC UT coverage %age on new code](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_coverage)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|IT coverage %age|[![SC IT coverage %age](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=it_coverage)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|IT coverage %age on new code|[![SC IT coverage %age on new code](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_it_coverage)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|Overall coverage %age|[![SC Overall coverage %age](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=overall_coverage)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|Overall coverage %age on new code|[![SC Overall coverage %age on new code](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_overall_coverage)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|lines duplication %age|[![SC lines duplication %age](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|new lines duplication %age|[![SC new lines duplication %age](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_duplicated_lines_density)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of blocker issues|[![SC # of blocker issues](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=blocker_violations)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of new critical issues|[![SC # of new critical issues](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=critical_violations)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of blocker issues|[![SC # of blocker issues](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_blocker_violations)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of new critical issues|[![SC # of new critical issues](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_critical_violations)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of code smells|[![SC # of code smells](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=code_smells)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of new code smells|[![SC # of new code smells](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_code_smells)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of bugs|[![SC # of bugs](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=bugs)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of new bugs|[![SC # of new bugs](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_bugs)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of vulnerabilities|[![SC # of vulnerabilities](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=vulnerabilities)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|# of new vulnerabilities|[![SC # of new vulnerabilities](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_vulnerabilities)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|technical debt ratio|[![SC technical debt ratio](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=sqale_debt_ratio)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|new technical debt ratio|[![SC new technical debt ratio](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_sqale_debt_ratio)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|new maintainability rating|[![SC new maintainability rating](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_maintainability_rating)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|new reliability rating|[![SC new reliability rating](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_reliability_rating)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
+|new security rating|[![SC new security rating](https://sonarcloud.io/api/badges/measure?key=unice-grp-bago.BAGOmaze&metric=new_security_rating)](https://sonarcloud.io/dashboard/index/unice-grp-bago.BAGOmaze)|
