@@ -25,14 +25,14 @@ int ui_menuPrincipal_exec(TUiContext argContext)
 {
     enum    EItemsMenuPrincipal
     {
-        EMenuItem1 = 0,
+        EMenuItemPlay = 0,
         /*!< Item 1. */
 
-        EMenuItem2,
+        EMenuItemConfigure,
         /*!< item 2. */
 
-        EMenuItem3,
-        /*!< item 3. */
+//        EMenuItem3,
+//        /*!< item 3. */
 
 
         _ESpaceritem1,
@@ -97,10 +97,10 @@ int ui_menuPrincipal_exec(TUiContext argContext)
                 break;
 
 
-            case EMenuItem2:
-                p_itemName          = "Menu Item 2";
+            case EMenuItemConfigure:
+                p_itemName          = "Configure";
                 p_itemDescription   = "";
-                p_itemUserPtr       = (void*)EMenuItem2;
+                p_itemUserPtr       = (void*)EMenuItemConfigure;
                 break;
 
 
@@ -111,17 +111,10 @@ int ui_menuPrincipal_exec(TUiContext argContext)
                 break;
 
 
-            case EMenuItem1:
-                p_itemName          = "Menu Item 1";
+            case EMenuItemPlay:
+                p_itemName          = "Play";
                 p_itemDescription   = "";
-                p_itemUserPtr       = (void*)EMenuItem1;
-                break;
-
-
-            case EMenuItem3:
-                p_itemName          = "Menu Item 3";
-                p_itemDescription   = "";
-                p_itemUserPtr       = (void*)EMenuItem3;
+                p_itemUserPtr       = (void*)EMenuItemPlay;
                 break;
 
 
