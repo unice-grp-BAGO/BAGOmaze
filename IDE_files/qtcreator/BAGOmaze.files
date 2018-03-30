@@ -1,0 +1,17 @@
+../../src/main.c
+../../Makefile
+../../src/core/log/log.h
+src/ui/ui_menuPrincipal.h
+src/ui/ui_menuPrincipal.c
+src/ui/ui_utils.h
+src/ui/ui_utils.c
+src/ui/ui_menu.h
+src/ui/ui_menu.c
+src/ui/ui.h
+src/ui/ui.c
+src/ui/ui_grid.h
+src/ui/ui_grid.c
+src/core/grid.h
+src/core/grid.c
+src/ui/ui_private.h
+src/ui/ui_defines.h
