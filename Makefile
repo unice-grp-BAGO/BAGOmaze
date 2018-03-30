@@ -57,7 +57,7 @@ DIR_BUILD=build
 #
 # Define sources and objects paths
 #
-MODULES		:= . ui #main test
+MODULES		:= . core ui #main test
 SRC_DIR		:= $(addprefix src/,$(MODULES))
 BUILD_SUBDIRS	:= $(addprefix $(DIR_BUILD)/,$(MODULES))
 
