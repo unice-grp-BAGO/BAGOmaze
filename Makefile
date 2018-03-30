@@ -57,13 +57,16 @@ DIR_OUTPUT=out
 #
 # Define sources and objects paths
 #
-MODULES		:= . #main test
+MODULES		:= . ui #main test
 SRC_DIR		:= $(addprefix src/,$(MODULES))
 BUILD_SUBDIRS	:= $(addprefix $(DIR_BUILD)/,$(MODULES))
 
 SRC		:= $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.c))
 OBJ		:= $(patsubst src/%.c,$(DIR_BUILD)/%.o,$(SRC))
-INCLUDES	:= $(addprefix -I,$(SRC_DIR))
+
+CFLAGS		:= -g -Wall
+INCLUDES	:= $(addprefix -I,$(SRC_DIR)) -I/usr/include/ # -I/usr/include/cdk/
+LDLIBS		:= -lcdk -lmenu -lncurses -L/usr/lib/x86_64-linux-gnu/
 
 # for details, see :
 # https://www.gnu.org/software/make/manual/html_node/General-Search.html
@@ -84,7 +87,7 @@ define make-goal
 $1/%.o: %.c
 	@$(ECHO) -n	"$(TERM_COL_INV)    $(TERM_FMT_BOLD)CC  $$<$(TERM_FMT_STD)"
 	@$(ECHO) 	"  -->  $$@$(TERM_COL_STD)"
-	@$(CC) $(INCLUDES) -c $$< -o $$@
+	@$(CC) $(INCLUDES) $(CFLAGS) -c $$< -o $$@
 endef
 
 
@@ -114,7 +117,7 @@ default: all
 #   Targets definitions to install dependencies
 # ##############################################################################
 install-dependencies:
-	apt install -qq libncurses5 libncurses5-dev
+	apt install -qq libncurses5 libncurses5-dev libcdk5-dev
 
 
 
@@ -151,7 +154,7 @@ $(BUILD_SUBDIRS) $(DIR_OUTPUT):
 #
 $(DIR_OUTPUT)/$(APP_NAME): $(OBJ)
 	@$(ECHO) 	"$(TERM_COL_INV)    $(TERM_FMT_BOLD)LD  $@$(TERM_FMT_STD)"
-	@$(LD) $^ -o $@
+	$(LD) $(CFLAGS) -o $@ $^ $(LDLIBS)
 	@$(ECHO)	"$(TERM_COL_GRN)    $(TERM_FMT_BOLD)--> $@ generated successfully !$(TERM_FMT_STD)"
 
 
