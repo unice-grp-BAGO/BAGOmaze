@@ -12,6 +12,11 @@
 ../../src/ui/ui_private.h
 ../../src/ui/ui_utils.c
 ../../src/ui/ui_utils.h
+../../tests/CMakeLists.txt
+../../tests/manu/CMakeLists.txt
+../../tests/manu/test-gridData.c
+
+
 
 src/ui/ui_grid.h
 src/ui/ui_grid.c

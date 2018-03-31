@@ -146,7 +146,7 @@ checkdirs: $(BUILD_SUBDIRS)
 #
 # This target creates needed directories.
 #
-$(BUILD_SUBDIRS) :
+$(BUILD_SUBDIRS) $(DIR_BUILD):
 	@$(ECHO)	"$(TERM_COL_ORG)    $(TERM_FMT_BOLD)RM  $@$(TERM_FMT_STD)"
 	@$(MKDIR) $@
 
