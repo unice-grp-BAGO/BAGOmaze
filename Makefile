@@ -50,7 +50,7 @@ DIR_BUILD=build
 
 ##  @brief  Defines the directory in which the generated software will be
 ##          placed.
-DIR_OUTPUT=out
+#DIR_OUTPUT=out
 
 
 
@@ -129,33 +129,26 @@ install-dependencies:
 #
 # This is the main target ; it will produce the main executable.
 #
-all: checkdirs $(DIR_OUTPUT)/$(APP_NAME)
+all: $(DIR_BUILD)
+	cd $(DIR_BUILD) 	\
+	&&	cmake ..	\
+	&&	make
 
 
 
 #
 # Dummy target to verify all needed directories have been created.
 #
-checkdirs: $(BUILD_SUBDIRS) $(DIR_OUTPUT)
+checkdirs: $(BUILD_SUBDIRS)
 
 
 
 #
 # This target creates needed directories.
 #
-$(BUILD_SUBDIRS) $(DIR_OUTPUT):
+$(BUILD_SUBDIRS) :
 	@$(ECHO)	"$(TERM_COL_ORG)    $(TERM_FMT_BOLD)RM  $@$(TERM_FMT_STD)"
 	@$(MKDIR) $@
-
-
-
-#
-# Main application's target.
-#
-$(DIR_OUTPUT)/$(APP_NAME): $(OBJ)
-	@$(ECHO) 	"$(TERM_COL_INV)    $(TERM_FMT_BOLD)LD  $@$(TERM_FMT_STD)"
-	$(LD) $(CFLAGS) -o $@ $^ $(LDLIBS)
-	@$(ECHO)	"$(TERM_COL_GRN)    $(TERM_FMT_BOLD)--> $@ generated successfully !$(TERM_FMT_STD)"
 
 
 
