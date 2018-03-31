@@ -16,3 +16,5 @@ src/ui/ui_grid.c
 src/core/grid.h
 src/core/grid.c
 src/ui/ui_defines.h
+../../CMakeLists.txt
+../../src/CMakeLists.txt

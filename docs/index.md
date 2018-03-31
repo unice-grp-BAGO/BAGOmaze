@@ -59,12 +59,19 @@ ________________________________________________________________________________
 
 Cette section liste les différents documents du projet.
 
+
 ## Documents d'entrée
 
 | ID | Désignation |
 | -- | ----------- |
 | DIN001 | [Enonce Projet 2017 - v1.pdf](110_input-doc/Enonce_Projet_2017_-_v1.pdf) |
 
+
+## Documentation de développement
+
+| ID | Désignation |
+| -- | ----------- |
+| ? | [Instructions élémentaires de compilation (non-exhaustives)](/210_doc-dev/howto-build)|
 
 
 ________________________________________________________________________________
