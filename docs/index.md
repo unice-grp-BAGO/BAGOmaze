@@ -71,7 +71,7 @@ Cette section liste les différents documents du projet.
 
 | ID | Désignation |
 | -- | ----------- |
-| ? | [Instructions élémentaires de compilation (non-exhaustives)](/210_doc-dev/howto-build)|
+| ? | [Instructions élémentaires de compilation (non-exhaustives)](210_doc-dev/howto-build)|
 
 
 ________________________________________________________________________________
