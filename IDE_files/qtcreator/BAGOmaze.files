@@ -1,6 +1,8 @@
 ../../Makefile
 ../../src/main.c
 ../../src/core/log/log.h
+../../src/core/grid.h
+../../src/core/grid.c
 ../../src/ui/ui.c
 ../../src/ui/ui.h
 ../../src/ui/ui_menu.c
@@ -10,11 +12,14 @@
 ../../src/ui/ui_private.h
 ../../src/ui/ui_utils.c
 ../../src/ui/ui_utils.h
+../../tests/CMakeLists.txt
+../../tests/manu/CMakeLists.txt
+../../tests/manu/test-gridData.c
+
+
 
 src/ui/ui_grid.h
 src/ui/ui_grid.c
-src/core/grid.h
-src/core/grid.c
 src/ui/ui_defines.h
 ../../CMakeLists.txt
 ../../src/CMakeLists.txt

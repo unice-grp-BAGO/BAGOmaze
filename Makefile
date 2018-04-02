@@ -57,7 +57,7 @@ DIR_BUILD=build
 #
 # Define sources and objects paths
 #
-MODULES		:= . ui #main test
+MODULES		:= . core ui #main test
 SRC_DIR		:= $(addprefix src/,$(MODULES))
 BUILD_SUBDIRS	:= $(addprefix $(DIR_BUILD)/,$(MODULES))
 
@@ -146,7 +146,7 @@ checkdirs: $(BUILD_SUBDIRS)
 #
 # This target creates needed directories.
 #
-$(BUILD_SUBDIRS) :
+$(BUILD_SUBDIRS) $(DIR_BUILD):
 	@$(ECHO)	"$(TERM_COL_ORG)    $(TERM_FMT_BOLD)RM  $@$(TERM_FMT_STD)"
 	@$(MKDIR) $@
 
