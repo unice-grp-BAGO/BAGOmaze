@@ -11,4 +11,4 @@ set ( UI_SRC
 )
 
 
-add_library( ui ${UI_SRC} )
+add_library( ui STATIC ${UI_SRC} )
