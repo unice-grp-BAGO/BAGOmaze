@@ -204,8 +204,18 @@ static void s_maze_generate(TUiContext argContext)
     }
 
 
+    /* Generation du labyrinthe */
     s_maze_DFS( argContext, lGridVisited, 1, 1 );
 
+
+    /* Definition du point de sortie */
+    grid_setCell( argContext->gridData,
+                  grid_rowsCount(argContext->gridData)-2,
+                  grid_columnsCount(argContext->gridData)-2,
+                  EGridCellExit );
+
+
+    /* Liberation des ressources locales */
     grid_destroy( lGridVisited );
 }
 
@@ -225,12 +235,18 @@ chtype  ui_grid_getChar(TUiContext argContext, int argX, int argY)
     int lSizeX  = grid_columnsCount( argContext->gridData );
     int lSizeY  = grid_rowsCount( argContext->gridData );
 
+    TEGridCellType  lCellType
+            = grid_getCell( argContext->gridData, argY, argX );
 
-    if( grid_getCell( argContext->gridData, argY, argX ) == EGridCellEmpty )
+    if( lCellType == EGridCellEmpty )
     {
         retVal  = ' ';
     }
-    else if( grid_getCell( argContext->gridData, argY, argX ) == EGridCellWall )
+    else if( lCellType == EGridCellExit )
+    {
+        retVal  = ACS_DIAMOND;
+    }
+    else if( lCellType == EGridCellWall )
     {
         /*
          *  Check presence of walls around this cell
@@ -338,6 +354,7 @@ chtype  ui_grid_getChar(TUiContext argContext, int argX, int argY)
 
 void    ui_grid_draw(TUiContext argContext)
 {
+    TEGridCellType  lCellType   = EGridCellUnknown;
     int lGridCols   = grid_columnsCount( argContext->gridData );
     int lGridRows   = grid_rowsCount( argContext->gridData );
     int lOffsetX    = 0;
@@ -353,13 +370,22 @@ void    ui_grid_draw(TUiContext argContext)
     {
         for( int lCol = 0 ; lCol < lGridCols ; lCol++ )
         {
+            lCellType   = grid_getCell( argContext->gridData,
+                                        lRow, lCol );
             int lPosX   = lCol  + lOffsetX;
             int lPosY   = lRow  + lOffsetY;
 
-            move( lPosY, lPosX );
-            addch( ui_grid_getChar( argContext, lCol, lRow ) );
 
-            //grid_setCell( lGridVisited, lRow, lCol, EGridCellUnknown );
+            move( lPosY, lPosX );
+            if( lCellType == EGridCellExit )
+            {
+                attron( COLOR_PAIR(NCURSES_STYLE_COLORID_MAZE_EXIT) );
+            }
+            else
+            {
+                attron( COLOR_PAIR( NCURSES_STYLE_COLORID_NORMAL ) );
+            }
+            addch( ui_grid_getChar( argContext, lCol, lRow ) );
         }
     }
 

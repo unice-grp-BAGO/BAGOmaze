@@ -40,7 +40,9 @@ TUiContext  ui_initialize(void)
     /* Start color. */
     start_color();
     initCDKColor();
+    init_pair( NCURSES_STYLE_COLORID_NORMAL,    COLOR_WHITE,COLOR_BLACK );
     init_pair( NCURSES_STYLE_COLORID_TITLE1,    COLOR_RED,  COLOR_BLACK );
+    init_pair( NCURSES_STYLE_COLORID_MAZE_EXIT, COLOR_BLACK,COLOR_GREEN );
 
 
     /* Pause the ncurses mode while we don't need it */

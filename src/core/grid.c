@@ -10,6 +10,7 @@
 
 
 #define C_CHAR_CELLTYPE_EMPTY   ('E')
+#define C_CHAR_CELLTYPE_EXIT    ('X')
 #define C_CHAR_CELLTYPE_WALL    ('W')
 
 
