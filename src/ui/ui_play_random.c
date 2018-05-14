@@ -170,7 +170,16 @@ static void s_maze_DFS( TUiContext  argContext,
  */
 static void s_maze_generate(TUiContext argContext)
 {
-    argContext->gridData    = grid_create( 19, 39 );
+    const int   c_maze_cols = 39;
+    const int   c_maze_rows = 19;
+
+    argContext->gridData    = grid_create( c_maze_rows, c_maze_cols );
+
+    getmaxyx(stdscr, argContext->gridOffsetY, argContext->gridOffsetX);
+    argContext->gridOffsetX -= c_maze_cols;
+    argContext->gridOffsetX /= 2;
+    argContext->gridOffsetY -= c_maze_rows;
+    argContext->gridOffsetY /= 2;
 
 
     /*
@@ -357,14 +366,7 @@ void    ui_grid_draw(TUiContext argContext)
     TEGridCellType  lCellType   = EGridCellUnknown;
     int lGridCols   = grid_columnsCount( argContext->gridData );
     int lGridRows   = grid_rowsCount( argContext->gridData );
-    int lOffsetX    = 0;
-    int lOffsetY    = 0;
 
-    getmaxyx(stdscr, lOffsetY, lOffsetX);
-    lOffsetX    -= lGridCols;
-    lOffsetX    /= 2;
-    lOffsetY    -= lGridRows;
-    lOffsetY    /= 2;
 
     for( int lRow = 0 ; lRow < lGridRows ; lRow++ )
     {
@@ -372,8 +374,8 @@ void    ui_grid_draw(TUiContext argContext)
         {
             lCellType   = grid_getCell( argContext->gridData,
                                         lRow, lCol );
-            int lPosX   = lCol  + lOffsetX;
-            int lPosY   = lRow  + lOffsetY;
+            int lPosX   = lCol  + argContext->gridOffsetX;
+            int lPosY   = lRow  + argContext->gridOffsetY;
 
 
             move( lPosY, lPosX );

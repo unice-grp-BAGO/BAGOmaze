@@ -30,6 +30,8 @@ TUiContext  ui_initialize(void)
 
 
     retVal->gridData    = NULL;
+    retVal->gridOffsetX = 0;
+    retVal->gridOffsetY = 0;
 
 
     /* Set up CDK. */

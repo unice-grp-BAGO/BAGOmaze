@@ -15,6 +15,9 @@ typedef struct  SUiContext
 
     TCoreGrid   gridData;
 
+    size_t      gridOffsetX;
+    size_t      gridOffsetY;
+
 }   TContext;
 
 #endif  /*< UI_PRIVATE_H */
