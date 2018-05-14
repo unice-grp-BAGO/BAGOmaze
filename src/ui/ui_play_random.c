@@ -214,7 +214,8 @@ static void s_maze_generate(TUiContext argContext)
 
 
     /* Generation du labyrinthe */
-    s_maze_DFS( argContext, lGridVisited, 1, 1 );
+    s_maze_DFS( argContext, lGridVisited,
+                argContext->playerPos.x, argContext->playerPos.y );
 
 
     /* Definition du point de sortie */
@@ -391,6 +392,16 @@ void    ui_grid_draw(TUiContext argContext)
         }
     }
 
+    /* Draw player position */
+    move( argContext->playerPos.y + argContext->gridOffsetY,
+          argContext->playerPos.x + argContext->gridOffsetX );
+    attron( COLOR_PAIR(NCURSES_STYLE_COLORID_MAZE_PLAYER) );
+    addch( 'P' );
+//    addch( ACS_BULLET );
+    move( argContext->playerPos.y + argContext->gridOffsetY,
+          argContext->playerPos.x + argContext->gridOffsetX );
+    attron( COLOR_PAIR(NCURSES_STYLE_COLORID_NORMAL) );
+
     refresh();
 }
 
@@ -409,7 +420,83 @@ void    ui_play_random(TUiContext argContext)
     fclose( p_file );
 
 
-    ui_grid_draw( argContext );
+    int lCharIn = '\0';
+
+    while(  argContext->playerPos.x != grid_columnsCount(argContext->gridData)-2
+        ||  argContext->playerPos.y != grid_rowsCount(argContext->gridData)-2 )
+    {
+        ui_grid_draw( argContext );
+
+        lCharIn	= getch();
+
+        switch( lCharIn )
+        {
+            case KEY_DOWN:
+            case 's':
+            case 'S':
+            {
+                if(         argContext->playerPos.y+1
+                        <   grid_rowsCount(argContext->gridData)
+                    &&  grid_getCell( argContext->gridData,
+                                      argContext->playerPos.y+1,
+                                      argContext->playerPos.x )
+                        !=  EGridCellWall )
+                {
+                    argContext->playerPos.y++;
+                }
+                break;
+            }
+
+
+            case KEY_UP:
+            case 'z':
+            case 'Z':
+            {
+                if(         argContext->playerPos.y-1 > 0
+                    &&  grid_getCell( argContext->gridData,
+                                      argContext->playerPos.y-1,
+                                      argContext->playerPos.x )
+                        !=  EGridCellWall )
+                {
+                    argContext->playerPos.y--;
+                }
+                break;
+            }
+
+
+            case KEY_LEFT:
+            case 'q':
+            case 'Q':
+            {
+                if(         argContext->playerPos.x-1 > 0
+                    &&  grid_getCell( argContext->gridData,
+                                      argContext->playerPos.y,
+                                      argContext->playerPos.x-1 )
+                        !=  EGridCellWall )
+                {
+                    argContext->playerPos.x--;
+                }
+                break;
+            }
+
+
+            case KEY_RIGHT:
+            case 'd':
+            case 'D':
+            {
+                if(         argContext->playerPos.x+1
+                        <   grid_columnsCount(argContext->gridData)
+                    &&  grid_getCell( argContext->gridData,
+                                      argContext->playerPos.y,
+                                      argContext->playerPos.x+1 )
+                        !=  EGridCellWall )
+                {
+                    argContext->playerPos.x++;
+                }
+                break;
+            }
+        }
+    }
 
 
     /* Wait for a user action */

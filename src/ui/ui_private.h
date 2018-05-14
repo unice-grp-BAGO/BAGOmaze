@@ -18,6 +18,13 @@ typedef struct  SUiContext
     size_t      gridOffsetX;
     size_t      gridOffsetY;
 
+    struct
+    {
+        int x;
+        int y;
+
+    }   playerPos;
+
 }   TContext;
 
 #endif  /*< UI_PRIVATE_H */
