@@ -354,6 +354,8 @@ void    ui_menu_itemCreate( const char*     argName_p,
 
     (*argOutItem_pp)    = new_item( p_itemName, p_itemDescription );
     set_item_userptr( (*argOutItem_pp), argUserPtr );
+
+    free( p_itemDescription );
 }
 
 /* ########################################################################## */
