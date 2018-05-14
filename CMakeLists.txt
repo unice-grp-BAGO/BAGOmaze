@@ -29,7 +29,8 @@ set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out/lib )
 # ncurses
 find_package( Curses REQUIRED )
 include_directories( ${CURSES_INCLUDE_DIR} )
-set( CURSES_LIBS -lmenu -lncurses )
+set( CURSES_LIBS -lmenu -lncursesw )
+add_definitions( -D_XOPEN_SOURCE_EXTENDED )
 
 # CDK
 set( CDK_LIBS -lcdk )

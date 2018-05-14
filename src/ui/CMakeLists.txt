@@ -5,6 +5,8 @@ set ( UI_SRC
     ui_menu.h
     ui_menuPrincipal.c
     ui_menuPrincipal.h
+    ui_play_random.c
+    ui_play_random.h
     ui_private.h
     ui_utils.c
     ui_utils.h

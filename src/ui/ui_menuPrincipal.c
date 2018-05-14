@@ -6,6 +6,7 @@
 
 #include "ui_menu.h"
 #include "ui_utils.h"
+#include "ui_play_random.h"
 #include "ui_private.h"
 
 
@@ -183,16 +184,15 @@ int ui_menuPrincipal_exec(TUiContext argContext)
                 break;
             }
 
-#if 0
-            case EMenuItem1:
+
+            case EMenuItemPlay:
             {
-                TRACE_DBG( "Entering Item1 menu..." );
-//                ui_menuConfiguration();
-                TRACE_ERR( "Case not implemented !" );
+                TRACE_DBG( "Selected : Play item" );
+                ui_play_random( argContext );
                 break;
             }
 
-
+#if 0
             case EMenuItem2:
             {
                 TRACE_DBG( "Entering Item2 menu..." );

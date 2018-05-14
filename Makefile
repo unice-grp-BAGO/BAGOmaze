@@ -117,7 +117,11 @@ default: all
 #   Targets definitions to install dependencies
 # ##############################################################################
 install-dependencies:
-	apt install -qq libncurses5 libncurses5-dev libcdk5-dev
+	apt install -y -qq \
+		libncurses5 \
+		libncurses5-dev \
+		libcdk5-dev \
+		libncursesw5-dev
 
 
 
@@ -131,7 +135,7 @@ install-dependencies:
 #
 all: $(DIR_BUILD)
 	cd $(DIR_BUILD) 	\
-	&&	cmake ..	\
+	&&	cmake .. -DCMAKE_BUILD_TYPE=Debug	\
 	&&	make
 
 

@@ -25,3 +25,5 @@
 src/ui/ui_grid.h
 src/ui/ui_grid.c
 src/ui/ui_defines.h
+../../src/ui/ui_play_random.h
+../../src/ui/ui_play_random.c

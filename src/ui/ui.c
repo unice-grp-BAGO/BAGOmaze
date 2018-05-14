@@ -29,6 +29,9 @@ TUiContext  ui_initialize(void)
     TUiContext  retVal  = malloc( sizeof( struct SUiContext ) );
 
 
+    retVal->gridData    = NULL;
+
+
     /* Set up CDK. */
     retVal->cursesWin   = initscr();
     retVal->cdkscreen_p = initCDKScreen( retVal->cursesWin );

@@ -1,3 +1,4 @@
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -10,6 +11,10 @@
 
 int main(void)
 {
+    /* Force the locale due to usage of multibyte UTF-8 characters. */
+    setlocale(LC_ALL, "");
+
+
     TUiContext lUiContext   = ui_initialize();
 
     ui_menuPrincipal_exec( lUiContext );

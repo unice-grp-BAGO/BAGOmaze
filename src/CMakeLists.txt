@@ -10,8 +10,8 @@ add_subdirectory( ui )
 add_executable( ${EXE} main.c )
 
 target_link_libraries( ${EXE}
-    core
     ui
+    core
     ${CURSES_LIBRARIES}
     ${CURSES_LIBS}
     ${CDK_LIBS}
