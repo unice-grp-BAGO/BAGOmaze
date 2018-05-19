@@ -214,6 +214,7 @@ static void s_maze_generate(TUiContext argContext)
 
 
     /* Generation du labyrinthe */
+    srand( time( NULL ) );
     s_maze_DFS( argContext, lGridVisited,
                 argContext->playerPos.x, argContext->playerPos.y );
 
