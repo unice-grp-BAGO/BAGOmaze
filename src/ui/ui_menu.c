@@ -282,6 +282,28 @@ int     ui_menu_driverExec( MENU	*p_argMenu,
         }
 
 
+        case KEY_BEG:
+        case KEY_SBEG:
+        {
+            /* On accede au premier item */
+            menu_driver(p_argMenu, REQ_FIRST_ITEM);
+
+            lRet	= -1;
+            break;
+        }
+
+
+        case KEY_ESC:
+        case KEY_END:
+        {
+            /* On accede au dernier item */
+            menu_driver(p_argMenu, REQ_LAST_ITEM);
+
+            lRet	= -1;
+            break;
+        }
+
+
         case KEY_RETURN: /* Enter */
         {
             p_item	= current_item( p_argMenu );
@@ -291,6 +313,8 @@ int     ui_menu_driverExec( MENU	*p_argMenu,
 
 
         default:
+            TRACE_DBG( "Touche inconnue : %c / 0x%X / %d",
+                       lCharIn, lCharIn, lCharIn );
             lRet	= -1;
             break;
     }

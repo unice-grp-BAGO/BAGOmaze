@@ -42,7 +42,7 @@ int main(void)
 
     grid_print( lGridData, stdout );
 
-    grid_destroy( lGridData );
+    grid_destroy( &lGridData );
 
     return EXIT_FAILURE;
 }

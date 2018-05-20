@@ -5,6 +5,7 @@
 #include "core/log/log.h"
 
 #include "ui_menu.h"
+#include "ui_menuPlay.h"
 #include "ui_utils.h"
 #include "ui_play_random.h"
 #include "ui_private.h"
@@ -106,7 +107,7 @@ int ui_menuPrincipal_exec(TUiContext argContext)
 
 
             case EMenuItemExit:
-                p_itemName          = C_MENU_EXIT_ITEMLABEL;
+                p_itemName          = "  [ Exit game ]";
                 p_itemDescription   = "";
                 p_itemUserPtr       = (void*)EMenuItemExit;
                 break;
@@ -187,8 +188,8 @@ int ui_menuPrincipal_exec(TUiContext argContext)
 
             case EMenuItemPlay:
             {
-                TRACE_DBG( "Selected : Play item" );
-                ui_play_random( argContext );
+                TRACE_DBG( "Selected : Play" );
+                ui_menuPlay_exec( argContext );
                 break;
             }
 

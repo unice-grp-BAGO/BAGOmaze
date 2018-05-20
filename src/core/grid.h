@@ -37,7 +37,7 @@ extern const TEGridCellType C_CELLTYPE_DEFAULT;
  *  Fonctions de gestion de la grille
  */
 TCoreGrid   grid_create(size_t argRows, size_t argCols );
-void        grid_destroy( TCoreGrid argGrid );
+void        grid_destroy(TCoreGrid *argGridPtr );
 
 
 size_t  grid_columnsCount(TCoreGrid argGrid);
@@ -62,10 +62,8 @@ TEGridCellType  grid_cellType_fromChar( const char  argChar );
 char            grid_cellType_toChar( const TEGridCellType  argType );
 
 
-#define TEST
-#ifdef  TEST
+
 void    grid_print(TCoreGrid argGrid , FILE* argFD);
-#endif
 
 
 
