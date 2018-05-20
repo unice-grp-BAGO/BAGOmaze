@@ -214,6 +214,15 @@ void    ui_play_selected(TUiContext argContext, const char *argFileName)
         ui_play_movePlayer( argContext );
     }
 
+    char*   pp_text[3] = {
+        CDK_STYLE_TITLE2 "You won the game ! :-)",
+        "",
+        CDK_STYLE_EMPHASIS1 "<Press any key to continue>"
+    };
+
+    ui_popupBlocking( argContext->cdkscreen_p,
+                      pp_text, 3 );
+
     /* Release resources */
     grid_destroy( &argContext->gridData );
     clear();
