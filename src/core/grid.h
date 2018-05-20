@@ -20,8 +20,9 @@ typedef struct _SCoreGrid*  TCoreGrid;
  */
 typedef enum    _EGridCellTypes
 {
-    EGridCellUnknown    = -1,
-    EGridCellEmpty      = 0,
+    EGridCellUnknown        = -1,
+    EGridCellEmpty          = 0,
+    EGridCellEmptyVisited,
     EGridCellWall,
     EGridCellExit,
 

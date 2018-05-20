@@ -73,6 +73,7 @@ char    grid_cellType_toChar(const TEGridCellType argType)
     switch( argType )
     {
         case    EGridCellEmpty:
+        case    EGridCellEmptyVisited:
             retVal  = C_CHAR_CELLTYPE_EMPTY;
             break;
 
