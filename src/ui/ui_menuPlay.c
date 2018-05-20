@@ -1,15 +1,13 @@
-#include "ui_menuPrincipal.h"
+#include "ui_menuPlay.h"
 
 #include <assert.h>
 
 #include "core/log/log.h"
 
 #include "ui_menu.h"
-#include "ui_menuPlay.h"
 #include "ui_utils.h"
 #include "ui_play_random.h"
 #include "ui_private.h"
-
 
 /* ########################################################################## */
 /* ########################################################################## */
@@ -23,18 +21,18 @@
 /* ########################################################################## */
 /* ########################################################################## */
 
-int ui_menuPrincipal_exec(TUiContext argContext)
+int     ui_menuPlay_exec(TUiContext argContext)
 {
     enum    EItemsMenuPrincipal
     {
-        EMenuItemPlay = 0,
+        EMenuItemArcade = 0,
         /*!< Item 1. */
 
-        EMenuItemConfigure,
+        EMenuItemChooseLevel,
         /*!< item 2. */
 
-//        EMenuItem3,
-//        /*!< item 3. */
+        EMenuItemRandom,
+        /*!< item 3. */
 
 
         _ESpaceritem1,
@@ -99,24 +97,31 @@ int ui_menuPrincipal_exec(TUiContext argContext)
                 break;
 
 
-            case EMenuItemConfigure:
-                p_itemName          = "Configure";
+            case EMenuItemArcade:
+                p_itemName          = "Arcade";
                 p_itemDescription   = "";
-                p_itemUserPtr       = (void*)EMenuItemConfigure;
+                p_itemUserPtr       = (void*)EMenuItemArcade;
+                break;
+
+
+            case EMenuItemChooseLevel:
+                p_itemName          = "Choose Level";
+                p_itemDescription   = "";
+                p_itemUserPtr       = (void*)EMenuItemChooseLevel;
                 break;
 
 
             case EMenuItemExit:
-                p_itemName          = "Exit game";
+                p_itemName          = C_MENU_EXIT_ITEMLABEL;
                 p_itemDescription   = "";
                 p_itemUserPtr       = (void*)EMenuItemExit;
                 break;
 
 
-            case EMenuItemPlay:
-                p_itemName          = "Play";
+            case EMenuItemRandom:
+                p_itemName          = "Random";
                 p_itemDescription   = "";
-                p_itemUserPtr       = (void*)EMenuItemPlay;
+                p_itemUserPtr       = (void*)EMenuItemRandom;
                 break;
 
 
@@ -159,7 +164,7 @@ int ui_menuPrincipal_exec(TUiContext argContext)
          *	Dessin des "éléments fixes"
          */
         ui_menu_draw( p_menu, p_menuWindow,
-                      "Main menu",
+                      "Play",
                       lMenuWindowHeight,
                       lMenuWindowWidth );
 
@@ -185,23 +190,31 @@ int ui_menuPrincipal_exec(TUiContext argContext)
                 break;
             }
 
-
-            case EMenuItemPlay:
+#if 1
+#warning "Not implemented !"
+#else
+            case EMenuItemArcade:
             {
-                TRACE_DBG( "Selected : Play" );
-                ui_menuPlay_exec( argContext );
+                TRACE_DBG( "Selected : Arcade" );
+                ui_play_random( argContext );
                 break;
             }
 
-#if 0
-            case EMenuItem2:
+
+            case EMenuItemChooseLevel:
             {
-                TRACE_DBG( "Entering Item2 menu..." );
-//                ui_menuConfiguration();
-                TRACE_ERR( "Case not implemented !" );
+                TRACE_DBG( "Selected : Choose Level" );
                 break;
             }
 #endif
+
+            case EMenuItemRandom:
+            {
+                TRACE_DBG( "Selected : Random" );
+                ui_play_random( argContext );
+                break;
+            }
+
 
             default:
                 lMsg_pp[0]	= CDK_STYLE_TITLE1 "Error !";
