@@ -4,42 +4,17 @@
 
 #include "ui_utils.h"
 #include "ui_private.h"
+#include "ui_play_common.h"
 
 /* ########################################################################## */
 /* ########################################################################## */
+#include "core/log/log.h"
 
 #define TRACE_DBG(format,...) \
         TRACE_DBG_BASE( "UI", format, ##__VA_ARGS__ );
 
 #define TRACE_ERR(format,...) \
         TRACE_ERR_BASE( "UI", format, ##__VA_ARGS__ );
-
-/* ########################################################################## */
-/* ########################################################################## */
-
-#define c_flag_wallDown     (0x08)
-#define c_flag_wallLeft     (0x04)
-#define c_flag_wallRight    (0x01)
-#define c_flag_wallUp       (0x02)
-
-
-struct coordinate
-{
-    int x;
-    int y;
-};
-
-const struct coordinate C_UP    = {  0, -1 };
-const struct coordinate C_DOWN  = {  0,  1 };
-const struct coordinate C_RIGHT = {  1,  0 };
-const struct coordinate C_LEFT  = { -1,  0 };
-
-struct coordinate LOOK_AROUND[4] = {
-    {    1,  0  },
-    {    0, -1  },
-    {   -1,  0  },
-    {    0,  1  }
-};
 
 /* ########################################################################## */
 /* ########################################################################## */
@@ -170,7 +145,7 @@ static void s_maze_DFS( TUiContext  argContext,
  */
 static void s_maze_generate(TUiContext argContext)
 {
-    const int   c_maze_cols = 39;
+    const int   c_maze_cols = 69;
     const int   c_maze_rows = 19;
 
     argContext->gridData    = grid_create( c_maze_rows, c_maze_cols );
@@ -227,183 +202,7 @@ static void s_maze_generate(TUiContext argContext)
 
 
     /* Liberation des ressources locales */
-    grid_destroy( lGridVisited );
-}
-
-/* ########################################################################## */
-/* ########################################################################## */
-chtype  ui_grid_getChar(TUiContext argContext, int argX, int argY)
-{
-//    const unsigned char c_flag_wallDown     = 0x08;
-//    const unsigned char c_flag_wallLeft     = 0x04;
-//    const unsigned char c_flag_wallRight    = 0x01;
-//    const unsigned char c_flag_wallUp       = 0x02;
-
-    unsigned char   lFlags  = 0x00;
-    chtype          retVal  = '?';
-
-
-    int lSizeX  = grid_columnsCount( argContext->gridData );
-    int lSizeY  = grid_rowsCount( argContext->gridData );
-
-    TEGridCellType  lCellType
-            = grid_getCell( argContext->gridData, argY, argX );
-
-    if( lCellType == EGridCellEmpty )
-    {
-        retVal  = ' ';
-    }
-    else if( lCellType == EGridCellExit )
-    {
-        retVal  = ACS_DIAMOND;
-    }
-    else if( lCellType == EGridCellWall )
-    {
-        /*
-         *  Check presence of walls around this cell
-         */
-        /* right side */
-        if(     (argX + 1 < lSizeX)
-            &&  grid_getCell( argContext->gridData, argY, argX+1 )
-                == EGridCellWall )
-        {
-            lFlags  |= c_flag_wallRight;
-        }
-
-        /* up side */
-        if(     (argY - 1 >= 0)
-            &&  grid_getCell( argContext->gridData, argY-1, argX )
-                == EGridCellWall )
-        {
-            lFlags  |= c_flag_wallUp;
-        }
-
-        /* left side */
-        if(     (argX - 1 >= 0)
-            &&  grid_getCell( argContext->gridData, argY, argX-1 )
-                == EGridCellWall )
-        {
-            lFlags  |= c_flag_wallLeft;
-        }
-
-        /* down side */
-        if(     (argY + 1 < lSizeY)
-            &&  grid_getCell( argContext->gridData, argY+1, argX )
-                == EGridCellWall )
-        {
-            lFlags  |= c_flag_wallDown;
-        }
-
-
-        switch( lFlags )
-        {
-            case    c_flag_wallLeft:
-            case    c_flag_wallRight:
-            case    (c_flag_wallRight|c_flag_wallLeft):
-    //            retVal  = 0xCD;
-                retVal  = ACS_HLINE;
-                break;
-
-            case    c_flag_wallUp:
-            case    c_flag_wallDown:
-            case    (c_flag_wallUp|c_flag_wallDown):
-    //            retVal  = 0xBA;
-                retVal  = ACS_VLINE;
-                break;
-
-            case    (c_flag_wallRight|c_flag_wallUp):
-    //            retVal  = 0xC8;
-                retVal  = ACS_LLCORNER;
-                break;
-
-            case    (c_flag_wallRight|c_flag_wallDown):
-    //            retVal  = 0xC9;
-                retVal  = ACS_ULCORNER;
-                break;
-                break;
-
-            case    (c_flag_wallLeft|c_flag_wallDown):
-    //            retVal  = 0xC9;
-                retVal  = ACS_URCORNER;
-                break;
-
-            case    (c_flag_wallUp|c_flag_wallLeft):
-    //            retVal  = 0xBC;
-                retVal  = ACS_LRCORNER;
-                break;
-
-            case    (c_flag_wallRight|c_flag_wallUp|c_flag_wallLeft):
-    //            retVal  = 0xCA;
-                retVal  = ACS_BTEE;
-                break;
-
-            case    (c_flag_wallUp|c_flag_wallLeft|c_flag_wallDown):
-    //            retVal  = 0xB9;
-                retVal  = ACS_RTEE;
-                break;
-
-            case    (c_flag_wallRight|c_flag_wallLeft|c_flag_wallDown):
-    //            retVal  = 0xCB;
-                retVal  = ACS_TTEE;
-                break;
-
-            case    (c_flag_wallRight|c_flag_wallUp|c_flag_wallDown):
-    //            retVal  = 0xCC;
-                retVal  = ACS_LTEE;
-                break;
-
-            case (c_flag_wallRight|c_flag_wallUp|c_flag_wallLeft|c_flag_wallDown):
-    //            retVal  = 0xCE;
-                retVal  = ACS_PLUS;
-                break;
-        }
-    }
-
-
-    return retVal;
-}
-
-void    ui_grid_draw(TUiContext argContext)
-{
-    TEGridCellType  lCellType   = EGridCellUnknown;
-    int lGridCols   = grid_columnsCount( argContext->gridData );
-    int lGridRows   = grid_rowsCount( argContext->gridData );
-
-
-    for( int lRow = 0 ; lRow < lGridRows ; lRow++ )
-    {
-        for( int lCol = 0 ; lCol < lGridCols ; lCol++ )
-        {
-            lCellType   = grid_getCell( argContext->gridData,
-                                        lRow, lCol );
-            int lPosX   = lCol  + argContext->gridOffsetX;
-            int lPosY   = lRow  + argContext->gridOffsetY;
-
-
-            move( lPosY, lPosX );
-            if( lCellType == EGridCellExit )
-            {
-                attron( COLOR_PAIR(NCURSES_STYLE_COLORID_MAZE_EXIT) );
-            }
-            else
-            {
-                attron( COLOR_PAIR( NCURSES_STYLE_COLORID_NORMAL ) );
-            }
-            addch( ui_grid_getChar( argContext, lCol, lRow ) );
-        }
-    }
-
-    /* Draw player position */
-    move( argContext->playerPos.y + argContext->gridOffsetY,
-          argContext->playerPos.x + argContext->gridOffsetX );
-    attron( COLOR_PAIR(NCURSES_STYLE_COLORID_MAZE_PLAYER) );
-    addch( 'P' );
-//    addch( ACS_BULLET );
-    move( argContext->playerPos.y + argContext->gridOffsetY,
-          argContext->playerPos.x + argContext->gridOffsetX );
-    attron( COLOR_PAIR(NCURSES_STYLE_COLORID_NORMAL) );
-
-    refresh();
+    grid_destroy( &lGridVisited );
 }
 
 /* ########################################################################## */
@@ -414,99 +213,30 @@ void    ui_play_random(TUiContext argContext)
 //    ui_clearScreen( argContext->cdkscreen_p );
     clear();
 
+    argContext->playerPos.x = 1;
+    argContext->playerPos.y = 1;
     s_maze_generate( argContext );
 
-    FILE* p_file    = fopen( "grid.csv", "w" );
+#define D_DEBUG
+#ifdef  D_DEBUG
+    /* Print the grid in a file */
+    TRACE_DBG( "Printing grid in a debug file..." );
+    FILE* p_file    = fopen( "grid_dbg.csv", "w" );
     grid_print( argContext->gridData, p_file);
     fclose( p_file );
+#endif
 
 
-    int lCharIn = '\0';
 
     while(  argContext->playerPos.x != grid_columnsCount(argContext->gridData)-2
         ||  argContext->playerPos.y != grid_rowsCount(argContext->gridData)-2 )
     {
-        ui_grid_draw( argContext );
-
-        lCharIn	= getch();
-
-        switch( lCharIn )
-        {
-            case KEY_DOWN:
-            case 's':
-            case 'S':
-            {
-                if(         argContext->playerPos.y+1
-                        <   grid_rowsCount(argContext->gridData)
-                    &&  grid_getCell( argContext->gridData,
-                                      argContext->playerPos.y+1,
-                                      argContext->playerPos.x )
-                        !=  EGridCellWall )
-                {
-                    argContext->playerPos.y++;
-                }
-                break;
-            }
-
-
-            case KEY_UP:
-            case 'z':
-            case 'Z':
-            {
-                if(         argContext->playerPos.y-1 > 0
-                    &&  grid_getCell( argContext->gridData,
-                                      argContext->playerPos.y-1,
-                                      argContext->playerPos.x )
-                        !=  EGridCellWall )
-                {
-                    argContext->playerPos.y--;
-                }
-                break;
-            }
-
-
-            case KEY_LEFT:
-            case 'q':
-            case 'Q':
-            {
-                if(         argContext->playerPos.x-1 > 0
-                    &&  grid_getCell( argContext->gridData,
-                                      argContext->playerPos.y,
-                                      argContext->playerPos.x-1 )
-                        !=  EGridCellWall )
-                {
-                    argContext->playerPos.x--;
-                }
-                break;
-            }
-
-
-            case KEY_RIGHT:
-            case 'd':
-            case 'D':
-            {
-                if(         argContext->playerPos.x+1
-                        <   grid_columnsCount(argContext->gridData)
-                    &&  grid_getCell( argContext->gridData,
-                                      argContext->playerPos.y,
-                                      argContext->playerPos.x+1 )
-                        !=  EGridCellWall )
-                {
-                    argContext->playerPos.x++;
-                }
-                break;
-            }
-        }
+        ui_play_drawGrid( argContext );
+        ui_play_movePlayer( argContext );
     }
 
-
-    /* Wait for a user action */
-    fflush( stdin );
-    fgetc( stdin );
-
-
     /* Release resources */
-    grid_destroy( argContext->gridData );
+    grid_destroy( &(argContext->gridData) );
     clear();
 }
 

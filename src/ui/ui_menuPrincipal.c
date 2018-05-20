@@ -107,7 +107,7 @@ int ui_menuPrincipal_exec(TUiContext argContext)
 
 
             case EMenuItemExit:
-                p_itemName          = "Exit game";
+                p_itemName          = "  [ Exit game ]";
                 p_itemDescription   = "";
                 p_itemUserPtr       = (void*)EMenuItemExit;
                 break;

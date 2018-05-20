@@ -15,8 +15,8 @@ typedef struct  SUiContext
 
     TCoreGrid   gridData;
 
-    size_t      gridOffsetX;
-    size_t      gridOffsetY;
+    int         gridOffsetX;
+    int         gridOffsetY;
 
     struct
     {

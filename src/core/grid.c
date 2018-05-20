@@ -1,18 +1,18 @@
 #include "grid.h"
 
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef  TEST
-#   include <stdio.h>
-#endif
+#include "core/macros.h"
 
+/* ########################################################################## */
+/* ########################################################################## */
 
 #define C_CHAR_CELLTYPE_EMPTY   ('E')
 #define C_CHAR_CELLTYPE_EXIT    ('X')
 #define C_CHAR_CELLTYPE_WALL    ('W')
-
 
 /* ########################################################################## */
 /* ########################################################################## */
@@ -45,6 +45,11 @@ TEGridCellType grid_cellType_fromChar(const char argChar)
             break;
 
 
+        case    C_CHAR_CELLTYPE_EXIT:
+            retVal  = EGridCellExit;
+            break;
+
+
         case    C_CHAR_CELLTYPE_WALL:
             retVal  = EGridCellWall;
             break;
@@ -69,6 +74,11 @@ char    grid_cellType_toChar(const TEGridCellType argType)
     {
         case    EGridCellEmpty:
             retVal  = C_CHAR_CELLTYPE_EMPTY;
+            break;
+
+
+        case    EGridCellExit:
+            retVal  = C_CHAR_CELLTYPE_EXIT;
             break;
 
 
@@ -125,10 +135,10 @@ TCoreGrid   grid_create(size_t argRows, size_t argCols)
 /* ########################################################################## */
 /* ########################################################################## */
 
-void    grid_destroy(TCoreGrid argGrid)
+void    grid_destroy(TCoreGrid* argGridPtr)
 {
-    free( argGrid->data );
-    free( (struct _SCoreGrid*)argGrid );
+    FREE( (*argGridPtr)->data );
+    FREE( (*argGridPtr) );
 }
 
 /* ########################################################################## */
@@ -147,7 +157,7 @@ TEGridCellType  grid_getCell( TCoreGrid argGrid,
 
 /* ########################################################################## */
 /* ########################################################################## */
-#ifdef  TEST
+
 void    grid_print(TCoreGrid argGrid, FILE* argFD)
 {
     assert( argFD != NULL && "argFD must be valid !" );
@@ -169,7 +179,7 @@ void    grid_print(TCoreGrid argGrid, FILE* argFD)
         putc( '\n', argFD );
     }
 }
-#endif
+
 /* ########################################################################## */
 /* ########################################################################## */
 
