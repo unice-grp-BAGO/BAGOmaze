@@ -16,3 +16,4 @@ HEADERS += log/log.h
 
 
 SOURCES += grid.c
+SOURCES += log/log.c
