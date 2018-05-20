@@ -39,6 +39,10 @@ chtype  ui_grid_getChar(TUiContext argContext, int argX, int argY)
     {
         retVal  = ' ';
     }
+    else if( lCellType == EGridCellEmptyVisited )
+    {
+        retVal  = ACS_BULLET;
+    }
     else if( lCellType == EGridCellExit )
     {
         retVal  = ACS_DIAMOND;
@@ -174,6 +178,10 @@ void    ui_play_drawGrid(TUiContext argContext)
             {
                 attron( COLOR_PAIR(NCURSES_STYLE_COLORID_MAZE_EXIT) );
             }
+            else if( lCellType == EGridCellEmptyVisited )
+            {
+                attron( COLOR_PAIR(NCURSES_STYLE_COLORID_MAZE_VISITED) );
+            }
             else
             {
                 attron( COLOR_PAIR( NCURSES_STYLE_COLORID_NORMAL ) );
@@ -200,7 +208,12 @@ void    ui_play_drawGrid(TUiContext argContext)
 
 void    ui_play_movePlayer(TUiContext argContext)
 {
-    int lCharIn = getch();
+    int lCharIn         = getch();
+    int lProcessVisited = 0;
+    int lOldPosX        = argContext->playerPos.x;
+    int lOldPosY        = argContext->playerPos.y;
+
+
 
     switch( lCharIn )
     {
@@ -216,6 +229,7 @@ void    ui_play_movePlayer(TUiContext argContext)
                     !=  EGridCellWall )
             {
                 argContext->playerPos.y++;
+                lProcessVisited++;
             }
             break;
         }
@@ -232,6 +246,7 @@ void    ui_play_movePlayer(TUiContext argContext)
                     !=  EGridCellWall )
             {
                 argContext->playerPos.y--;
+                lProcessVisited++;
             }
             break;
         }
@@ -248,6 +263,7 @@ void    ui_play_movePlayer(TUiContext argContext)
                     !=  EGridCellWall )
             {
                 argContext->playerPos.x--;
+                lProcessVisited++;
             }
             break;
         }
@@ -265,8 +281,32 @@ void    ui_play_movePlayer(TUiContext argContext)
                     !=  EGridCellWall )
             {
                 argContext->playerPos.x++;
+                lProcessVisited++;
             }
             break;
+        }
+    }
+
+
+
+    if( lProcessVisited != 0 )
+    {
+
+        if(     grid_getCell( argContext->gridData,
+                              argContext->playerPos.y,
+                              argContext->playerPos.x ) == EGridCellEmpty )
+        {
+            grid_setCell( argContext->gridData,
+                          argContext->playerPos.y,
+                          argContext->playerPos.x,
+                          EGridCellEmptyVisited );
+        }
+        else
+        {
+            grid_setCell( argContext->gridData,
+                          lOldPosY,
+                          lOldPosX,
+                          EGridCellEmpty );
         }
     }
 }

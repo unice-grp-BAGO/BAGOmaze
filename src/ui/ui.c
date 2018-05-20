@@ -45,6 +45,7 @@ TUiContext  ui_initialize(void)
     init_pair( NCURSES_STYLE_COLORID_TITLE1,        COLOR_RED,  COLOR_BLACK );
     init_pair( NCURSES_STYLE_COLORID_MAZE_EXIT,     COLOR_BLACK,COLOR_GREEN );
     init_pair( NCURSES_STYLE_COLORID_MAZE_PLAYER,   COLOR_BLACK,COLOR_YELLOW );
+    init_pair( NCURSES_STYLE_COLORID_MAZE_VISITED,  COLOR_WHITE,COLOR_BLACK );
 
 
     /* Pause the ncurses mode while we don't need it */
