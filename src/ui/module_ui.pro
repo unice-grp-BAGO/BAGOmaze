@@ -25,6 +25,7 @@ INCLUDEPATH += ..
 
 HEADERS += ui.h
 HEADERS += ui_menu.h
+HEADERS += ui_menuPlay.h
 HEADERS += ui_menuPrincipal.h
 HEADERS += ui_play_random.h
 HEADERS += ui_private.h
@@ -34,6 +35,7 @@ HEADERS += ui_utils.h
 
 SOURCES += ui.c
 SOURCES += ui_menu.c
+SOURCES += ui_menuPlay.c
 SOURCES += ui_menuPrincipal.c
 SOURCES += ui_play_random.c
 SOURCES += ui_utils.c
