@@ -29,6 +29,13 @@ TUiContext  ui_initialize(void)
     TUiContext  retVal  = malloc( sizeof( struct SUiContext ) );
 
 
+    retVal->gridData    = NULL;
+    retVal->gridOffsetX = 0;
+    retVal->gridOffsetY = 0;
+    retVal->playerPos.x = 1;
+    retVal->playerPos.y = 1;
+
+
     /* Set up CDK. */
     retVal->cursesWin   = initscr();
     retVal->cdkscreen_p = initCDKScreen( retVal->cursesWin );
@@ -37,7 +44,10 @@ TUiContext  ui_initialize(void)
     /* Start color. */
     start_color();
     initCDKColor();
-    init_pair( NCURSES_STYLE_COLORID_TITLE1,    COLOR_RED,  COLOR_BLACK );
+    init_pair( NCURSES_STYLE_COLORID_NORMAL,        COLOR_WHITE,COLOR_BLACK );
+    init_pair( NCURSES_STYLE_COLORID_TITLE1,        COLOR_RED,  COLOR_BLACK );
+    init_pair( NCURSES_STYLE_COLORID_MAZE_EXIT,     COLOR_BLACK,COLOR_GREEN );
+    init_pair( NCURSES_STYLE_COLORID_MAZE_PLAYER,   COLOR_BLACK,COLOR_YELLOW );
 
 
     /* Pause the ncurses mode while we don't need it */

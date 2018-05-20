@@ -1,6 +1,7 @@
 #ifndef GRID_H
 #define GRID_H
 
+#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -22,10 +23,13 @@ typedef enum    _EGridCellTypes
     EGridCellUnknown    = -1,
     EGridCellEmpty      = 0,
     EGridCellWall,
+    EGridCellExit,
 
     _EGridCellTypesCount
 
 }   TEGridCellType;
+
+extern const TEGridCellType C_CELLTYPE_DEFAULT;
 
 
 
@@ -60,7 +64,7 @@ char            grid_cellType_toChar( const TEGridCellType  argType );
 
 #define TEST
 #ifdef  TEST
-void    grid_print( TCoreGrid argGrid );
+void    grid_print(TCoreGrid argGrid , FILE* argFD);
 #endif
 
 

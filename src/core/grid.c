@@ -9,7 +9,8 @@
 #endif
 
 
-#define C_CHAR_CELLTYPE_EMPTY   (' ')
+#define C_CHAR_CELLTYPE_EMPTY   ('E')
+#define C_CHAR_CELLTYPE_EXIT    ('X')
 #define C_CHAR_CELLTYPE_WALL    ('W')
 
 
@@ -23,6 +24,11 @@ struct  _SCoreGrid
 
     TEGridCellType  *data;
 };
+
+/* ########################################################################## */
+/* ########################################################################## */
+
+const TEGridCellType    C_CELLTYPE_DEFAULT  = EGridCellWall;
 
 /* ########################################################################## */
 /* ########################################################################## */
@@ -55,7 +61,7 @@ TEGridCellType grid_cellType_fromChar(const char argChar)
 /* ########################################################################## */
 /* ########################################################################## */
 
-char grid_cellType_toChar(const TEGridCellType argType)
+char    grid_cellType_toChar(const TEGridCellType argType)
 {
     char    retVal  = '?';
 
@@ -102,7 +108,15 @@ TCoreGrid   grid_create(size_t argRows, size_t argCols)
     retVal->data    = (TEGridCellType*)malloc(      sizeof( TEGridCellType )
                                                 *   lCellsCount );
 
-    memset(retVal->data, EGridCellEmpty, lCellsCount);
+    for( int lRow = 0 ; lRow < retVal->rowsCount ; lRow++ )
+    {
+        for( int lCol = 0 ; lCol < retVal->columsCount ; lCol++ )
+        {
+            grid_setCell( retVal, lRow, lCol, C_CELLTYPE_DEFAULT );
+        }
+
+    }
+//    memset(retVal->data, EGridCellUnknown, lCellsCount);
 
 
     return retVal;
@@ -134,19 +148,25 @@ TEGridCellType  grid_getCell( TCoreGrid argGrid,
 /* ########################################################################## */
 /* ########################################################################## */
 #ifdef  TEST
-void    grid_print(TCoreGrid argGrid)
+void    grid_print(TCoreGrid argGrid, FILE* argFD)
 {
+    assert( argFD != NULL && "argFD must be valid !" );
+
+
     for(size_t row = 0 ; row < argGrid->rowsCount ; row++ )
     {
         for( size_t col = 0 ; col < argGrid->columsCount ; col++ )
         {
-            putc( grid_cellType_toChar( grid_getCell( argGrid, row, col ) ),
-                  stdout );
+            if( col != 0 )
+            {
+                putc( ';', argFD );
+            }
 
-            putc( ' ', stdout );
+            putc( grid_cellType_toChar( grid_getCell( argGrid, row, col ) ),
+                  argFD );
         }
 
-        putc( '\n', stdout );
+        putc( '\n', argFD );
     }
 }
 #endif

@@ -40,7 +40,7 @@ int main(void)
 
     grid_setCell( lGridData, 3, 6, EGridCellEmpty );
 
-    grid_print( lGridData );
+    grid_print( lGridData, stdout );
 
     grid_destroy( lGridData );
 
