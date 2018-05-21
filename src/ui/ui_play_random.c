@@ -20,6 +20,7 @@
 /* ########################################################################## */
 /**
  *  @brief  Maze generation using depth-first search
+ *  @see    https://gist.github.com/kalmi/2953373
  */
 static void s_maze_DFS( TUiContext  argContext,
                         TCoreGrid   argGridVisited,
