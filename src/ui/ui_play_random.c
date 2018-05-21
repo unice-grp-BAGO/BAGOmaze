@@ -145,15 +145,36 @@ static void s_maze_DFS( TUiContext  argContext,
  */
 static void s_maze_generate(TUiContext argContext)
 {
-    const int   c_maze_cols = 69;
-    const int   c_maze_rows = 19;
+    /* Init generateur de nombres aléatoires */
+    srand( time( NULL ) );
 
-    argContext->gridData    = grid_create( c_maze_rows, c_maze_cols );
+
+    /*
+     *  Select randomly a grid size
+     */
+    int lMazeRows   = 6 + ( rand()%14 );
+    if( lMazeRows%2 == 0 )
+    {
+        lMazeRows   -= 1;
+    }
+
+
+    int lMazeCols   = 6 + ( rand()%64 );
+    if( lMazeCols%2 == 0 )
+    {
+        lMazeCols   -= 1;
+    }
+
+
+    /*
+     *  Create the grid and calculate the display offset
+     */
+    argContext->gridData    = grid_create( lMazeRows, lMazeCols );
 
     getmaxyx(stdscr, argContext->gridOffsetY, argContext->gridOffsetX);
-    argContext->gridOffsetX -= c_maze_cols;
+    argContext->gridOffsetX -= lMazeCols;
     argContext->gridOffsetX /= 2;
-    argContext->gridOffsetY -= c_maze_rows;
+    argContext->gridOffsetY -= lMazeRows;
     argContext->gridOffsetY /= 2;
 
 
@@ -189,7 +210,6 @@ static void s_maze_generate(TUiContext argContext)
 
 
     /* Generation du labyrinthe */
-    srand( time( NULL ) );
     s_maze_DFS( argContext, lGridVisited,
                 argContext->playerPos.x, argContext->playerPos.y );
 
