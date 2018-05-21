@@ -222,7 +222,7 @@ void    ui_play_movePlayer(TUiContext argContext)
         case 'S':
         {
             if(         argContext->playerPos.y+1
-                    <   grid_rowsCount(argContext->gridData)
+                    <   (int)grid_rowsCount(argContext->gridData)
                 &&  grid_getCell( argContext->gridData,
                                   argContext->playerPos.y+1,
                                   argContext->playerPos.x )
@@ -274,7 +274,7 @@ void    ui_play_movePlayer(TUiContext argContext)
         case 'D':
         {
             if(         argContext->playerPos.x+1
-                    <   grid_columnsCount(argContext->gridData)
+                    <   (int)grid_columnsCount(argContext->gridData)
                 &&  grid_getCell( argContext->gridData,
                                   argContext->playerPos.y,
                                   argContext->playerPos.x+1 )

@@ -6,7 +6,7 @@
 
 typedef struct
 {
-    uint64_t        id;
+    int             id;
     const char*     name;
 } Ts_EnumMenuEntry;
 

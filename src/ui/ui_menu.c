@@ -167,6 +167,9 @@ void    ui_menu_draw(   MENU*		argMenu_p,
                         const int	argMenuWindowHeight,
                         const int	argMenuWindowWidth )
 {
+    (void)argMenuWindowHeight; /*<  This arg is currently unused but we kept it
+                                    "just in case" */
+
     /* Dessin du contour de la fenêtre principale */
     box( argMenuWindow_p, 0, 0 );
 

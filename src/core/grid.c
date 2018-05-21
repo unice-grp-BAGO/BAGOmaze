@@ -119,9 +119,9 @@ TCoreGrid   grid_create(size_t argRows, size_t argCols)
     retVal->data    = (TEGridCellType*)malloc(      sizeof( TEGridCellType )
                                                 *   lCellsCount );
 
-    for( int lRow = 0 ; lRow < retVal->rowsCount ; lRow++ )
+    for( size_t lRow = 0 ; lRow < retVal->rowsCount ; lRow++ )
     {
-        for( int lCol = 0 ; lCol < retVal->columsCount ; lCol++ )
+        for( size_t lCol = 0 ; lCol < retVal->columsCount ; lCol++ )
         {
             grid_setCell( retVal, lRow, lCol, C_CELLTYPE_DEFAULT );
         }

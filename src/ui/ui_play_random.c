@@ -228,8 +228,10 @@ void    ui_play_random(TUiContext argContext)
 
 
 
-    while(  argContext->playerPos.x != grid_columnsCount(argContext->gridData)-2
-        ||  argContext->playerPos.y != grid_rowsCount(argContext->gridData)-2 )
+    while(      argContext->playerPos.x
+            !=  (int)grid_columnsCount(argContext->gridData)-2
+        ||      argContext->playerPos.y
+            !=  (int)grid_rowsCount(argContext->gridData)-2 )
     {
         ui_play_drawGrid( argContext );
         ui_play_movePlayer( argContext );
