@@ -208,13 +208,26 @@ void    ui_play_drawGrid(TUiContext argContext)
 
 void    ui_play_movePlayer(TUiContext argContext)
 {
-    int lCharIn         = getch();
+    int lCharIn         = getch();  /*< Lecture d'un caractere au clavier */
     int lProcessVisited = 0;
     int lOldPosX        = argContext->playerPos.x;
     int lOldPosY        = argContext->playerPos.y;
 
 
 
+    /*
+     *  On effectue des actions en fonction de la touche pressee sur le clavier.
+     *
+     * Chaque scope de case correspond à un type de deplacement (haut/bas/gauche
+     * /droite).
+     * Pour chaque cas, l'algorithme est le même :
+     *  -#  On verifie que le déplacement est possible
+     *      -#  La nouvelle position doit être contenue dans les limites de la
+     *          grille ;
+     *      -#  La cellule (position) de destination ne doit pas contenir de
+     *          mur.
+     *  -#  On modifie la position courante du joueur
+     */
     switch( lCharIn )
     {
         case KEY_DOWN:

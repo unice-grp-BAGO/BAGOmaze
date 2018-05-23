@@ -38,13 +38,22 @@ static int  s_loadGrid(TUiContext argContext, const char *argFileName)
     int     retVal  = EXIT_SUCCESS;
 
 
+    /*
+     *  Vérification des donnees d'entree
+     */
     if( argContext->gridData != NULL )
     {
         TRACE_ERR( "Can't load the grid : A grid already exist !" );
         retVal  = EXIT_FAILURE;
     }
+
+
+    /*
+     *  Tentative d'ouverture du fichier
+     */
     else if( (p_file=fopen( argFileName, "r" )) == NULL )
     {
+        /* Si une erreur survient, on stoppe le traitement */
         TRACE_ERR( "Can't load the grid : An error occured while opening the"
                    " file '%s' !",
                    argFileName );
@@ -52,13 +61,17 @@ static int  s_loadGrid(TUiContext argContext, const char *argFileName)
     }
 
 
+    /*
+     *  Extraction des données du fichier
+     */
     else
     {
         char    lBuffer[C_BUFFER_LENGTH]    = {0};
 
 
-        /*
-         *  Find the size of the grid in the file
+        /* ---------------------------------------------------------------------
+         *  Premiere lecture du fichier :
+         *  On cherche a connaitre la taille de la grille qu'il contient.
          */
         int     lColumnsCount   = 0;
         int     lRowsCount      = 0;
@@ -83,7 +96,11 @@ static int  s_loadGrid(TUiContext argContext, const char *argFileName)
             p_token = strtok(lBuffer,";");
             while( p_token != NULL )
             {
+                /* Incrementation du nombre de colonnes trouvees dans cette
+                 * ligne */
                 lColumnsCountTmp++;
+
+                /* Passage au token suivant */
                 p_token = strtok(NULL,";");
             }
 
@@ -104,6 +121,8 @@ static int  s_loadGrid(TUiContext argContext, const char *argFileName)
         if(     lColumnsCount   < C_GRID_MINIMUMSIZE
             ||  lRowsCount      < C_GRID_MINIMUMSIZE )
         {
+            /* Si la taille lue est inférieure à la taille minimum d'aire de
+             * jeu, alors refuser de créer la grille */
             TRACE_ERR( "Grid will be too small ! (detected a maximum of %d rows"
                        " and %d columns).",
                        lRowsCount, lColumnsCount );
@@ -111,7 +130,10 @@ static int  s_loadGrid(TUiContext argContext, const char *argFileName)
         }
         else
         {
+            /* Recuperation de la taille de l'ecran */
             getmaxyx(stdscr, argContext->gridOffsetY, argContext->gridOffsetX);
+
+            /* Calcul de la difference de taille entre l'ecran et la grille */
             argContext->gridOffsetX -= lColumnsCount;
             argContext->gridOffsetY -= lRowsCount;
 
@@ -130,16 +152,27 @@ static int  s_loadGrid(TUiContext argContext, const char *argFileName)
                            lRowsCount,
                            lColumnsCount );
             }
+
+            /* Division de la difference de taille par 2 */
             argContext->gridOffsetX /= 2;
             argContext->gridOffsetY /= 2;
 
 
-
+            /*
+             *  Instanciation de la grille
+             */
             argContext->gridData    = grid_create( lRowsCount,
                                                    lColumnsCount );
+
+
+
+            /* -----------------------------------------------------------------
+             *  Deuxieme lecture :
+             *  On remplit le contenu de la grille
+             */
             lColumnsCount   = 0;
             lRowsCount      = 0;
-            rewind( p_file );
+            rewind( p_file );       /*< Retour au debut du fichier. */
 
             while( ! feof( p_file ) )
             {
@@ -147,18 +180,28 @@ static int  s_loadGrid(TUiContext argContext, const char *argFileName)
                 if(     fgets( lBuffer, C_BUFFER_LENGTH, p_file ) == NULL
                     ||  strlen( lBuffer ) == 0 )
                 {
-                    /* Can't proces line, just continue */
+                    /* On verifie qu'on a bien réussi a lire une ligne et que la
+                     * ligne n'est pas vide. */
+                    /* Can't process line, just continue */
                     continue;
                 }
 
 
-
+                /*
+                 *  Decoupage de la ligne
+                 */
                 p_token = strtok(lBuffer,";");
                 while( p_token != NULL )
                 {
+                    /* On recupere le premier caractere de chaque "morceau" de
+                     * ligne car un seul caractere nous interesse.
+                     * Ensuite on convertit ce caractere en valeur d'enum. */
                     TEGridCellType lCellType
                             = grid_cellType_fromChar( p_token[ 0 ] );
 
+
+                    /* On definit la valeur de la cellule correspondante dans
+                     * la matrice. */
                     grid_setCell( argContext->gridData,
                                   lRowsCount,
                                   lColumnsCount,
@@ -171,16 +214,19 @@ static int  s_loadGrid(TUiContext argContext, const char *argFileName)
                 }
 
 
-                lRowsCount++;
+                lRowsCount++; /*< Incrementation du numero de ligne. */
             }
         }
     }
 
 
+    /* Liberation des ressources locales */
     if( p_file != NULL )
     {
         fclose( p_file );
     }
+
+
     return retVal;
 }
 
