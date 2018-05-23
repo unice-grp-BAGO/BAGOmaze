@@ -1,0 +1,30 @@
+\chapter{Contenu de la livraison}
+
+\section{Arborescence de l'archive}
+
+La livraison contient les éléments suivants :
+\dirtree{%
+.1 (dossier racine).
+	.2 docs/\DTcomment{Documents de la livraison}.
+	.2 run/\DTcomment{Exécutable compilé et son environnement d'exécution}.
+		.3 BAGOmaze\DTcomment{Exécutable}.
+		.3 rsrc/\DTcomment{Dossier contenant les grilles statiques}.
+	.2 sources/\DTcomment{Sources du logiciel}.
+}
+
+\section{Compilation des sources}
+
+Le projet utilise \verb|qmake| et plusieurs autres dépendances.
+
+Par commodité, un script \verb|install-dependecies-dev.sh| est disponible dans le dossier \verb|sources/BAGOmaze/| et permet d'installer les dépendances nécessaires à la majorité des systèmes Linux basés sur Debian comme Ubuntu.
+
+Pour compiler les sources :
+\begin{enumerate}
+	\item Se rendre dans le dossier \verb|sources/BAGOmaze| ;
+	\item Créer un sous-dossier \verb|build| ;
+	\item Ouvrir un terminal dans le dossier \verb|build| ;
+	\item Exécuter la commande \verb|qmake ..| ;
+	\item Exécuter la commande \verb|make|
+\end{enumerate}
+
+L'exécutable est automatiquement déplacé dans le dossier \verb|BAGOmaze/out/app/|.
